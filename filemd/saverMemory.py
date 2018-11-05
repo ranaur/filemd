@@ -12,7 +12,7 @@ class SaverMemory(metaclass=abc.ABCMeta):
         if debug: print("SaverMemory.__init__()")
         self.meta = {}
 
-    def load(self, filename):
+    def load(self, filename, **args):
         if debug: print("SaverMemory.load(" + filename + ")")
         if not filename in list(self.meta.keys()):
             initData = {}

@@ -7,7 +7,7 @@ class MetadataSaver(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def load(self, filename): # reads the metadata reference
+    def load(self, filename, **args): # reads the metadata reference
         pass
 
     @abc.abstractmethod

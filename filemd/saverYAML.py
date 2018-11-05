@@ -15,7 +15,7 @@ class SaverYAML(SaverMemory):
         if debug: print("SaverYAML.__init__()")
         super(SaverYAML, self).__init__()
 
-    def load(self, filename):
+    def load(self, filename, **args):
         if debug: print("SaverYAML.load(self, " + filename + ")")
         super(SaverYAML, self).load(filename)
         try:
