@@ -1,4 +1,3 @@
-import builtins
 import hashlib
 def hashFile(fname, algorithm):
     with open(fname, "rb") as f:
@@ -24,13 +23,6 @@ def method(m, args):
     except:
         m.setMeta("hash.md5", hashFile(filename, hashlib.md5()))
 
-parser_generate_hash = builtins.subparser_generate.add_parser('hash', help='generate hash')
-parser_generate_hash.add_argument('--nomd5', action='store_true', help='md5 is the default argument')
-parser_generate_hash.add_argument('--sha1', action='store_true')
-parser_generate_hash.add_argument('--sha224', action='store_true')
-parser_generate_hash.add_argument('--sha256', action='store_true')
-parser_generate_hash.add_argument('--sha384', action='store_true')
-parser_generate_hash.add_argument('--sha512', action='store_true')
-parser_generate_hash.add_argument('--all', action='store_true')
-parser_generate_hash.set_defaults(funcGenerate=method)
+name = 'hash'
+description='generate hash'
 

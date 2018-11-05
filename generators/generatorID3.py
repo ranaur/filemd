@@ -1,4 +1,3 @@
-import builtins
 import mutagen
 from pprint import pprint
 def method(m, args):
@@ -23,7 +22,7 @@ def method(m, args):
 
             m.setMeta("id3."+str(key), value)
 
-parser_generate_id3 = subparser_generate.add_parser('id3', help='generate id3 info')
-parser_generate_id3.set_defaults(funcGenerate=method)
+name = 'id3'
+description='generate id3 info'
 
 

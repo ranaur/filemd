@@ -1,4 +1,3 @@
-import builtins
 import os
 import datetime
 
@@ -15,6 +14,6 @@ def method(m, args):
     m.setMeta("file.extension", os.path.splitext(filename)[1])
 
 
-parser_generate_fileinfo = builtins.subparser_generate.add_parser('fileinfo', help='generate file info')
-parser_generate_fileinfo.set_defaults(funcGenerate=method)
+name = 'fileinfo'
+description='generate file info'
 

@@ -10,6 +10,6 @@ def method(m, args):
     f = magic.Magic(mime=True, uncompress=True)
     m.setMeta("filetype.magicUncompressMime", f.from_file(filename))
 
-parser_generate_magic = subparser_generate.add_parser('magic', help='generate type/mime info based on magic file')
-parser_generate_magic.set_defaults(funcGenerate=method)
+name = 'magic'
+description = 'generate type/mime info based on magic file'
 

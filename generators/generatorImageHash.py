@@ -15,7 +15,7 @@ def method(m, args):
         m.setMeta("imagehash.whash-haar", str(imagehash.whash(image)))
         m.setMeta("imagehash.whash-db4", str(imagehash.whash(image, mode='db4')))
 
-parser_generate_imagehash = subparser_generate.add_parser('imagehash', help='generate imagehash info')
-parser_generate_imagehash.set_defaults(funcGenerate=method)
+name = 'imagehash'
+description='generate imagehash info'
 
 

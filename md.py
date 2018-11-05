@@ -113,13 +113,18 @@ parser_savers = subparsers.add_parser('savers', help='list all configured savers
 parser_savers.set_defaults(func=metadataSavers)
 
 parser_generate = subparsers.add_parser('generate', help='generate metadata info based on file/content')
+#parser_generate.add_argument('--only', '-o', nargs='1', help='only generate this metadata (regexp)')
 
 subparser_generate = parser_generate.add_subparsers()
-builtins.subparser_generate = subparser_generate
+
+from generators import modules
+for generator in modules:
+   temp_parser = subparser_generate.add_parser(generator.name, help=generator.description)
+   temp_parser.set_defaults(funcGenerate=generator.method)
+
 parser_generate.add_argument('files', nargs='+', help='files to process')
 parser_generate.set_defaults(func=metadataGenerate)
 
-import generators
 
 #parser_generate_fileinfo = subparser_generate.add_parser('filetype', help='generate type/mime info')
 #parser_generate_fileinfo.set_defaults(funcGenerate=metadataGenerateFiletype)

@@ -47,5 +47,5 @@ def method(m, args):
 
                 m.setMeta("exif0th."+str(tagname), tagvalue)
 
-parser_generate_exif = subparser_generate.add_parser('exif', help='generate exif info')
-parser_generate_exif.set_defaults(funcGenerate=method)
+name = 'exif'
+description='generate exif info'

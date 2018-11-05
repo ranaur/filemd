@@ -1,4 +1,3 @@
-import builtins
 import eyed3
 def method(m, args):
     filename = m.filename
@@ -14,7 +13,7 @@ def method(m, args):
         m.setMeta("eyeD3.album_artist", id3.tag.album_artist)
         m.setMeta("eyeD3.track_num", id3.tag.track_num[0])
 
-parser_generate_id3 = subparser_generate.add_parser('eyeD3', help='generate id3 info using eyeD3')
-parser_generate_id3.set_defaults(funcGenerate=method)
+name = 'eyeD3'
+description='generate id3 info using eyeD3'
 
 
