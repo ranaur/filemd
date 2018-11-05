@@ -1,10 +1,10 @@
-# metadata YAML 0.0 1541449807 test_metadata.py
-hash.md5: fc2f948aaad7102fec6b6a2d5a33a613
-hash.sha1: 1381012bc8878d3820cb7edee27820cf1ed9307a
-hash.sha224: 0066935ce7837e159cde451c8a4f451e71c8e1e7dddb691487198e48
-hash.sha256: 3a57315906e5d52d188491d254c611f7b826343ea79f1c3ba24c7412904559a4
-hash.sha384: 69cb05d8ad58ae5d196b1e3ad416746d33b97b995aa85fcbda4ad57a8fd1ca74e2211198b760db8453e667d377eb1ea5
-hash.sha512: 600bb7399b63063c63b3970a5e1e4c49e5621961461abf25d27f33dd9d2403d0535de946e6c23e829184855ea3fc60c9828011a80188b51a92464e15d18b0aff
+# metadata YAML 0.0 1541450476 test_metadata.py
+hash.md5: c6ab2ba3e98f09691c5e71c58cf1e45c
+hash.sha1: 5993bc8ea000dcf982088fb8e3b75f6e36b7e28d
+hash.sha224: e9f7cd1865ae041db2f9df535e70480e1da106351dbe1d30e9175eab
+hash.sha256: ec6c025db9ce897adc0ad2eeb03c5cdb3c257fbcef4ff7f2ab7bc4ce28793cf3
+hash.sha384: 2c4128d7e7bc0e7ce1dbe62912d2078dfe6990475e62fc6b8763dd9c145b67b44082200dea388aa4a2f00b03229276ea
+hash.sha512: ecaf59b0a8a49cc5be53f0da3d97af1b7af9d827e89ad9c2278909071374f0a3ff1b3999a9a25f04b43466a4458503903e6608376989783beb47b47c2c41807b
 identity.absolute_name: D:\Users\GUSCH\@Arquivos\mysrc\filemd\tests\test_metadata.py
 identity.access_time: 2018-11-05 12:53:12.201100
 identity.base_name: test_metadata.py
@@ -16,18 +16,3 @@ identity.modification_time: 2018-11-05 12:53:12.201100
 identity.prefix: tests\test_metadata
 identity.sha512: ecaf59b0a8a49cc5be53f0da3d97af1b7af9d827e89ad9c2278909071374f0a3ff1b3999a9a25f04b43466a4458503903e6608376989783beb47b47c2c41807b
 identity.size: 3560
-path.absolute: /Users/ranaur/Documents/mysrc/filetags/metadata/test_metadata.py
-path.base: test_metadata.py
-path.extension: .py
-path.filename: test_metadata.py
-path.prefix: test_metadata
-stat.ist_ino: 8598662834
-stat.st_atime: 2018-10-05 01:03:31.602040
-stat.st_ctime: 2018-10-04 13:55:20.603476
-stat.st_dev: 16777220
-stat.st_gid: 20
-stat.st_mode: 33188
-stat.st_mtime: 2018-10-04 13:55:20.600447
-stat.st_nlink: 1
-stat.st_size: 3558
-stat.st_uid: 501
