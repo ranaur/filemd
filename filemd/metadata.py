@@ -57,8 +57,9 @@ class Metadata(metaclass=abc.ABCMeta):
 
         if type(value) is list:
             value = ", ".join(value)
+
         if type(value) is str:
-            value = value.encode('utf8')
+            value = value
 
         for saver in self.savers:
             saver.setMeta(self.filename, name, value)
