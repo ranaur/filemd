@@ -1,0 +1,29 @@
+# metadata YAML 0.0 1539058926 example.mp3
+eyeD3.album: Vivat Imperium BONUS Tracks
+eyeD3.artist: DarkravenGames.com and Alex Benzinger
+eyeD3.title: Feast of Kalthrin and the Great Wizard's Team Joust
+eyeD3.track_num: 1
+file.absolute_name: /Users/ranaur/Documents/mysrc/filetags/example.mp3
+file.access_time: 2018-10-09 01:22:05.928985
+file.base_name: example.mp3
+file.creation_time: 2018-10-09 00:35:54.378186
+file.extension: .mp3
+file.modification_time: 2018-10-09 00:35:54.377172
+file.prefix: example
+file.size: 34207418
+filetype.extension: mp3
+filetype.magic: Audio file with ID3 version 2.3.0, contains:MPEG ADTS, layer III,
+  v1, 160 kbps, 44.1 kHz, Stereo
+filetype.magicMime: audio/mpeg
+filetype.magicUncompress: Audio file with ID3 version 2.3.0, contains:MPEG ADTS, layer
+  III, v1, 160 kbps, 44.1 kHz, Stereo
+filetype.magicUncompressMime: audio/mpeg
+filetype.mime: audio/mpeg
+hash.md5: f963b2124971ccfde86c88c0f8067cc4
+id3.album: Vivat Imperium BONUS Tracks
+id3.artist: DarkravenGames.com and Alex Benzinger
+id3.composer: Alex Benzinger
+id3.discnumber: 2
+id3.genre: Sound Clip
+id3.title: Feast of Kalthrin and the Great Wizard's Team Joust
+id3.tracknumber: 1

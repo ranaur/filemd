@@ -1,0 +1,36 @@
+# metadata YAML 0.0 1539143157 example2.jpg
+exif0th.DateTime: 2018:02:12 14:48:24
+exif0th.ImageDescription: '                               '
+exif0th.Make: SONY
+exif0th.Model: DSC-WX300
+exif0th.Orientation: Right-Top
+exif0th.ResolutionUnit: inches
+exif0th.Software: DSC-WX300 v1.00
+exif0th.XResolution: 350
+exif0th.YResolution: 350
+file.absolute_name: /Users/ranaur/Documents/mysrc/filetags/example2.jpg
+file.access_time: 2018-10-10 00:45:53.132293
+file.base_name: example2.jpg
+file.creation_time: 2018-10-10 00:45:46.389693
+file.extension: .jpg
+file.modification_time: 2018-10-10 00:45:46.387072
+file.prefix: ex2
+file.size: 4811722
+filetype.extension: jpg
+filetype.magic: 'JPEG image data, Exif standard: [TIFF image data, little-endian,
+  direntries=12, description=                               , manufacturer=SONY, model=DSC-WX300,
+  orientation=upper-right, xresolution=206, yresolution=214, resolutionunit=2, software=DSC-WX300
+  v1.00, datetime=2018:02:12 14:48:24], baseline, precision 8, 4896x3672, frames 3'
+filetype.magicMime: image/jpeg
+filetype.magicUncompress: 'JPEG image data, Exif standard: [TIFF image data, little-endian,
+  direntries=12, description=                               , manufacturer=SONY, model=DSC-WX300,
+  orientation=upper-right, xresolution=206, yresolution=214, resolutionunit=2, software=DSC-WX300
+  v1.00, datetime=2018:02:12 14:48:24], baseline, precision 8, 4896x3672, frames 3'
+filetype.magicUncompressMime: image/jpeg
+filetype.mime: image/jpeg
+hash.md5: 7570e74fd25e5fc2b26493609820ab63
+imagehash.average: 3e3830363f3c3c3c
+imagehash.dhash: f0e2e0cce0f1f8d8
+imagehash.phash: 832d5a9ab574524f
+imagehash.whash-db4: 01f807e01f807e01f807e05fc27e03f807f01fc0ff03f3dfd
+imagehash.whash-haar: 3e3830363f3c3c3c

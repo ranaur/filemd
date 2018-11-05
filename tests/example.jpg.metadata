@@ -1,0 +1,37 @@
+# metadata YAML 0.0 1539143075 example.jpg
+exif0th.DateTime: 2017:10:01 15:49:08
+exif0th.ImageLength: 2988
+exif0th.ImageWidth: 5312
+exif0th.Make: samsung
+exif0th.Model: SM-G900M
+exif0th.Orientation: Right-Top
+exif0th.ResolutionUnit: inches
+exif0th.Software: G900MUBS1CQD1
+exif0th.XResolution: 72
+exif0th.YResolution: 72
+file.absolute_name: /Users/ranaur/Documents/mysrc/filetags/example.jpg
+file.access_time: 2018-10-10 00:44:31.207634
+file.base_name: example.jpg
+file.creation_time: 2018-10-06 22:52:14.856407
+file.extension: .jpg
+file.modification_time: 2018-10-06 22:52:14.852649
+file.prefix: example
+file.size: 2463570
+filetype.extension: jpg
+filetype.magic: 'JPEG image data, Exif standard: [TIFF image data, little-endian,
+  direntries=13, height=2988, manufacturer=samsung, model=SM-G900M, orientation=upper-right,
+  xresolution=188, yresolution=196, resolutionunit=2, software=G900MUBS1CQD1, datetime=2017:10:01
+  15:49:08, GPS-Data, width=5312], baseline, precision 8, 5312x2988, frames 3'
+filetype.magicMime: image/jpeg
+filetype.magicUncompress: 'JPEG image data, Exif standard: [TIFF image data, little-endian,
+  direntries=13, height=2988, manufacturer=samsung, model=SM-G900M, orientation=upper-right,
+  xresolution=188, yresolution=196, resolutionunit=2, software=G900MUBS1CQD1, datetime=2017:10:01
+  15:49:08, GPS-Data, width=5312], baseline, precision 8, 5312x2988, frames 3'
+filetype.magicUncompressMime: image/jpeg
+filetype.mime: image/jpeg
+hash.md5: 6191fcea90f174f5aa9b9599ef9b52e5
+imagehash.average: 0f0f0f0f0f0f0f0f
+imagehash.dhash: ffffffffffffffff
+imagehash.phash: a8c3775bcc8c4237
+imagehash.whash-db4: 01fc07f01fc07f01fc07f01fc07f01fc07f01fc07f01fc07f
+imagehash.whash-haar: 0f0f0f0f0f0f0f0f

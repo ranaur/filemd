@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "filemd"
+version = "0.0.0"
+license = "GPL-3.0"
+description = "Implementation of a simple system portable file metadata system"
+authors = ["Gustavo Schoenaker <ranaur2008@ranaur.net>"]
+repository = "https://github.com/ranaur/filemd"
+homepage = "https://github.com/ranaur/filemd"
+keywords = ["metadata", "file"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.5"
+pyyaml = ">=3.13"
+filetype = ">=1.0"
+piexif = ">=1.1"
+pillow = ">=5.3"
+imagehash = ">=4.0"
+eyed3 = ">=0.8.7"
+mutagen = ">=1.41"
+
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+s4 = "md.py:entry_point"
