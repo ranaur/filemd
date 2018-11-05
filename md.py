@@ -133,12 +133,13 @@ import generators
 #parser_generate_exif = subparser_generate.add_parser('exif', help='generate exif info')
 #parser_generate_exif.set_defaults(funcGenerate=metadataGenerateEXIF)
 
-args = parser.parse_args()
+if __name__ == '__main__':
+    args = parser.parse_args()
 
-import inspect
-if (hasattr(args, 'func') and inspect.isfunction(args.func)):
-    args.func(args)
-else:
-    parser.print_help()
+    import inspect
+    if (hasattr(args, 'func') and inspect.isfunction(args.func)):
+        args.func(args)
+    else:
+        parser.print_help()
 
 
