@@ -124,16 +124,95 @@ class MetadataList():
                     raise MetadataSyncError
                 self.set(ol_md)
 
-    def set(metadata):
-        if not hasattr(self.groups, metadata.group):
-            self.groups[group] = {}
-        
-        self.groups[group][name] = metadata
+    def set(self, var, name = None, value = None, _type = DETECT):
+        if var is list: # List of metadatas
+            if len(var) == 0:
+                return
+
+            if var[0] is Metadata:
+                for v in var:
+                    self.set(v)
+                return
+
+            if var[0] is List:
+                for v in var:
+                    group = v[0]
+                    name = v[1]
+                    value = v[2]
+                    _type = v[3] if len(v) == 3 else DETECT
+                    self.set(Metadata(group, name, value, _type))
+                return
 
 
-    def get(group, name, default = None):
+        if var is str and name is str and value is not None:
+            self.set(Metadata(var, name, value, _type))
+            return
+
+        if var is Metadata:
+            if not hasattr(self.groups, metadata.group):
+                self.groups[group] = {}
+            
+            self.groups[group][name] = metadata
+            return
+
+        raise TypeError 
+
+    def _get(self, group, name):
         if hasattr(self.groups, group):
             if hasattr(self.groups[group], name):
                 return self.groups[group][name]
+        
+        raise KeyError
+
+    def get(self, group, name, default = None):
+        try:
+            meta = self._get(group, name) 
+        except KeyError:
+            if default == None:
+                raise KeyError
+            else:
+                return default
+
+        if meta is set:
+            raise TypeError
+
+        return meta
+
+    def remove(self, group, name, silent = False):
+        try:
+            meta = self._get(group, name)
+            del meta
+        except KeyError:
+            if not silent:
+                raise KeyError
+
+    def _get_tag_metadata(self, group, name):
+        meta = self._get(group, name)
+        if meta is not set:
+            raise TypeError
+        return meta
+
+    def set_tag(self, group, name):
+        self.set(group, name, set(), TAG)
+
+    def add_tag(self, group, name, tag):
+        meta = self._get_tag_metadata(group, name)
+
+        meta.append(tag)
+
+    def has_tag(self, group, name, tag):
+        return tag in self._get_tag_metadata(group, name)
+
+    def remove_tag(self, group, name, tag, silent = False):
+        if silent:
+            self._get_tag_metadata(group, name).discard(tag)
         else:
-            return default
+            self._get_tag_metadata(group, name).remove(tag)
+
+    def tags(self, group, name):
+        return self._get_tag_metadata(group, name)
+
+    def metadata(self):
+        for group in groups.values():
+            for meta in group.values():
+                yield meta
