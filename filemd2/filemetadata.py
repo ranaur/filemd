@@ -1,9 +1,22 @@
+from .metadata import MetadataList
+from .identity import Identity
+from .drivers import Driver
+
+from .metadata import DETECT
+from .metadata import TEXT
+from .metadata import NUMBER
+from .metadata import DATETIME
+from .metadata import DATA
+from .metadata import TAG
+
+
 class FileMetadata:
     def __init__(self, var = None):
         self.__metadatas = MetadataList()
-        self.__itentity = None
         self.__read_drivers = []
         self.__write_drivers = []
+        if var is not None:
+            self.load(var)
 
     def add_driver(self, driver, read_only = False, write_only = False):
         if not isinstance(driver, Driver):
@@ -23,74 +36,71 @@ class FileMetadata:
     def del_read_driver(self, driver):
         if type(driver) == str:
             for d in self.__read_drivers:
-                if d.name == driver:
+                if d.name() == driver:
                     self.__read_drivers.remove(d)
             return
 
-        if isinstance(driver, Driver):
+        if hasattr(driver, "name"):
             for d in self.__read_drivers:
-                if d.name == driver.name:
+                if d.name() == driver.name():
                     self.__read_drivers.remove(d)
             return
+        raise TypeError
 
     def del_write_driver(self, driver):
         if type(driver) == str:
             for d in self.__write_drivers:
-                if d.name == driver:
+                if d.name() == driver:
                     self.__write_drivers.remove(d)
             return
 
-        if isinstance(driver, Driver):
+        if hasattr(driver, "name"):
             for d in self.__write_drivers:
-                if d.name == driver.name:
+                if d.name() == driver.name():
                     self.__write_drivers.remove(d)
             return
+            
+        raise TypeError
 
     def list_drivers(self):
         res = {}
         for d in self.__read_drivers:
-            res[d.name] = [d, "R"]
+            res[d.name()] = [d, "R"]
         for d in self.__write_drivers:
-            if hasattr(res, d.name):
-                res[d.name] = [d, "RW"]
+            if d.name() in res:
+                res[d.name()] = [d, "RW"]
             else:
-                res[d.name] = [d, "W"]
+                res[d.name()] = [d, "W"]
+        return res
 
-    def load_metadata(self, var):
-        if var is str: 
+    def load(self, var):
+        if type(var) is str: 
             var = Identity(file = var)
 
-        if var is not Identity:
+        if type(var) is not Identity:
             raise TypeError
 
         self.__identity = var
+        self.__metadatas = MetadataList()
 
-        for d in self.__read_drivers:
-            self.__metadatas.merge(d.load_metadata(var))
+        for driver in self.__read_drivers:
+            n = driver.load(var)
+            self.__metadatas.merge(n)
 
-    def set(self):
-        raise NotImplemented
+    def save(self):
+        for driver in self.__write_drivers:
+            driver.save(self.__identity, self.__metadatas)
 
-    def get(self):
-        raise NotImplemented
+    def clear(self):
+        for driver in self.__write_drivers:
+            driver.clear(self.__identity)
 
-    def remove(self):
-        raise NotImplemented
+    def __getattr__(self, name):
+        #if name.startswith("_"):
+        #    raise AttributeError
+        
+        return getattr(self.__metadatas, name)
 
-    def set_tag(self):
-        raise NotImplemented
-
-    def add_tag(self):
-        raise NotImplemented
-
-    def has_tag(self):
-        raise NotImplemented
-
-    def remove_tag(self):
-        raise NotImplemented
-
-    def tags(self):
-        raise NotImplemented
-
-    def metadata(self):
-        raise NotImplemented
+    def __str__(self):
+        # list_drivers(self) ..;
+        return self.__metadatas.__str__()
