@@ -1,11 +1,11 @@
 import argparse
 import builtins
 
-import filemd2
+import filemd
 from util import *
 
 def metadataGet(args):
-    m = filemd2.FileMetadata(filemd2.get_driver(args.driver))
+    m = filemd.FileMetadata(filemd.get_driver(args.driver))
     for filename in args.files:
         m.load(filename)
         group, name = name2groupname(args.name)

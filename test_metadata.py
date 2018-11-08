@@ -5,32 +5,32 @@ import time
 from pprint import pprint
 import os
 
-from filemd2 import *
+from filemd import *
 
 TEST_FILE = "testfile"
 class TestMetadata(object):
     def test_driver(self):
         fm = FileMetadata()
-        fm.add_driver(DriverRemoraYAML.DriverRemoraYAML())
+        fm.add_driver(get_driver("DriverRemoraYAML"))
         d = fm.list_drivers()
         assert len(d) == 1
         assert d["DriverRemoraYAML"][1] == "RW"
         assert type(d["DriverRemoraYAML"][0]) is drivers.DriverRemoraYAML.DriverRemoraYAML
 
-        fm.del_driver(DriverRemoraYAML.DriverRemoraYAML())
+        fm.del_driver("DriverRemoraYAML")
         d = fm.list_drivers()
         assert len(d) == 0
 
-        fm.add_driver(DriverRemoraYAML.DriverRemoraYAML(), read_only = True)
+        fm.add_driver(get_driver("DriverRemoraYAML"), read_only = True)
         d = fm.list_drivers()
         assert len(d) == 1
         assert d["DriverRemoraYAML"][1] == "R"
 
-        fm.del_driver(DriverRemoraYAML.DriverRemoraYAML())
+        fm.del_driver(get_driver("DriverRemoraYAML"))
         d = fm.list_drivers()
         assert len(d) == 0
 
-        fm.add_driver(DriverRemoraYAML.DriverRemoraYAML(), write_only = True)
+        fm.add_driver(get_driver("DriverRemoraYAML"), write_only = True)
         d = fm.list_drivers()
         assert len(d) == 1
         assert d["DriverRemoraYAML"][1] == "W"
@@ -56,17 +56,17 @@ class TestMetadata(object):
         
         self.create_test_file()
         fm = FileMetadata(TEST_FILE)
-        fm.add_driver(DriverRemoraYAML.DriverRemoraYAML())
+        fm.add_driver(get_driver("DriverRemoraYAML"))
         fm.set("group", "name", "value")
         fm.save()
         
         fm = FileMetadata()
-        fm.add_driver(DriverRemoraYAML.DriverRemoraYAML(), read_only = True)
+        fm.add_driver(get_driver("DriverRemoraYAML"), read_only = True)
         fm.load(TEST_FILE)
         #print(fm)
         assert fm.get("group", "name") == "value"
 
-        fm.add_driver(DriverRemoraYAML.DriverRemoraYAML(), write_only = True)
+        fm.add_driver(get_driver("DriverRemoraYAML"), write_only = True)
         fm.clear()
         
         self.clear_test_file()

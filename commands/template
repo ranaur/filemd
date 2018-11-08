@@ -1,4 +1,4 @@
-import filemd2
+import filemd
 import commands
 
 import argparse
