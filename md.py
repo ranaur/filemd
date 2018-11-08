@@ -12,11 +12,11 @@ if __name__ == '__main__':
 
     import inspect
     if (hasattr(args, 'func') and inspect.isfunction(args.func)):
-        try:
+        #try:
             exit(args.func(args))
-        except Exception as e:
-            print(("error: " + e.__class__.__name__ + " " + str(e)).rstrip())
-            exit(1)
+        #except Exception as e:
+        #    print(("error: " + e.__class__.__name__ + " " + str(e)).rstrip())
+        #    exit(1)
     else:
         parser.print_help()
 

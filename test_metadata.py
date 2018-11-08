@@ -89,9 +89,8 @@ class TestMetadata(object):
 
     def test_get_set_tag(self):
         fm = FileMetadata()
-        fm.set_tag("group", "tags")
-        fm.add_tag("group", "tags", "first tag")
-        fm.add_tag("group", "tags", "second tag")
+        fm.set_tag("group", "tags", "first tag")
+        fm.set_tag("group", "tags", "second tag")
         assert fm.has_tag("group", "tags", "first tag")
         assert fm.has_tag("group", "tags", "second tag")
         assert not fm.has_tag("group", "tags", "non-existent tag")
@@ -114,10 +113,9 @@ class TestMetadata(object):
         time.sleep(1) 
         fm.set("time", "newer name", "newer value")
         assert fm.get_timestamp("time", "older name") < fm.get_timestamp("time", "newer name")
-        fm.set_tag("time", "timetag")
-        fm.add_tag("time", "timetag", "old tag")
+        fm.set_tag("time", "timetag", "old tag")
         time.sleep(1) 
-        fm.add_tag("time", "timetag", "new tag")
+        fm.set_tag("time", "timetag", "new tag")
         assert fm.get_tag_timestamp("time", "timetag", "old tag") < fm.get_tag_timestamp("time", "timetag", "new tag")
         
     def test_metadata(self):

@@ -209,7 +209,7 @@ class MetadataList():
             raise TypeError
         return meta
 
-    def set_tag(self, group, name):
+    def _set_tag(self, group, name):
         self.set(group, name, {}, TAG)
 
     def get_tag_timestamp(self, group, name, tag):
@@ -217,19 +217,22 @@ class MetadataList():
         tag_ = meta[tag]
         return tag_.timestamp
 
-    def add_tag(self, group, name, tag):
-        
-        meta = self._get_tag_metadata(group, name)
-        
+    def set_tag(self, group, name, tag):
+        try:
+            meta = self._get_tag_metadata(group, name)
+        except KeyError:
+            self._set_tag(group, name)
+            meta = self._get_tag_metadata(group, name)
+
         tags = meta.value
         if type(tag) is Tag:
-            tags[tag] = tag
+            tags[tag.value] = tag
         elif type(tag) is list or type(tag) is set:
-            for newtag in tag:
-                if type(newtag) is Tag:
-                    tags[newtag.value] = newtag
+            for t in tag:
+                if type(t) is Tag:
+                    tags[t.value] = t
                 else:
-                    tags[newtag] = Tag(newtag)
+                    tags[t] = Tag(t)
         else:
             tags[tag] = Tag(tag)
         meta.touch()
@@ -240,12 +243,22 @@ class MetadataList():
     def remove_tag(self, group, name, tag, silent = False):
         try:
             meta = self._get_tag_metadata(group, name)
-            del meta.value[tag]
-            meta.touch()
         except KeyError:
             if not silent:
                 raise KeyError
+            return
 
+        if type(tag) is Tag:
+            del meta.value[tag.value]
+        elif type(tag) is list or type(tag) is set:
+            for t in tag:
+                if type(t) is Tag:
+                    del meta.value[t.value]
+                else:
+                    del meta.value[t]
+        else:
+            del meta.value[tag]
+        meta.touch()
     def tags(self, group, name):
         for tag in self._get_tag_metadata(group, name).value.keys():
             yield tag
@@ -258,7 +271,7 @@ class MetadataList():
         for group in self.__groups.values():
             for meta in group.values():
                 if type(meta.value) is dict:
-                    yield (meta.group, meta.name, meta.value.keys())
+                    yield (meta.group, meta.name, list(meta.value.keys()))
                 else:
                     yield (meta.group, meta.name, meta.value)
 

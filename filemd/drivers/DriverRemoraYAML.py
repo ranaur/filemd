@@ -7,7 +7,7 @@ import time
 import os
 
 from ..metadataerror import *
-from ..metadata import MetadataList, Metadata
+from ..metadata import MetadataList, Metadata, Tag
 from util import name2groupname
 
 debug = False
@@ -51,14 +51,19 @@ class DriverRemoraYAML(Driver):
         if res._headerfile != os.path.basename(identity.file):
             raise MetadataWrongFileFormat
 
-        for md in data["metadata"].keys():
-            group, name = name2groupname(md)
-            #value, timestamp = data["metadata"][md].rsplit("#",1)
-            #value = value.rstrip()
-            #timestamp = datetime.datetime.strptime(timestamp.lstrip(), "%Y-%m-%d %H:%M:%S %f")
-            value = data["metadata"][md]
-            timestamp = datetime.datetime.utcfromtimestamp(res._timestamp)
-            res.set(Metadata(group, name, value, timestamp))
+    
+        if data is not None and "metadata" in data and type(data["metadata"]) is dict:
+            for md in data["metadata"].keys():
+                group, name = name2groupname(md)
+                #value, timestamp = data["metadata"][md].rsplit("#",1)
+                #value = value.rstrip()
+                #timestamp = datetime.datetime.strptime(timestamp.lstrip(), "%Y-%m-%d %H:%M:%S %f")
+                timestamp = datetime.datetime.utcfromtimestamp(res._timestamp)
+                if type(data["metadata"][md]) is list:
+                    for tag in data["metadata"][md]:
+                        res.set_tag(group, name, Tag(tag, timestamp=timestamp))
+                else:
+                    res.set(Metadata(group, name, data["metadata"][md], timestamp))
         if debug: print("LOAD OK")
         return res
 
@@ -91,7 +96,13 @@ class DriverRemoraYAML(Driver):
             data["metadata"] = {}
             for md in metadatalist.metadatas_raw():
                 #data["metadata"][md.group + "." + md.name] = md.value + ' # ' + datetime.datetime.strftime(md.timestamp, "%Y-%m-%d %H:%M:%S %f")
-                data["metadata"][md.group + "." + md.name] = md.value
+                if type(md.value) is dict: # tag
+                    tags = list()
+                    for tag in md.value:
+                        tags.append(md.value[tag].value)
+                    data["metadata"][md.group + "." + md.name] = tags
+                else:
+                    data["metadata"][md.group + "." + md.name] = md.value
             
             outfile.write(yaml.dump(data, default_flow_style=False))
 

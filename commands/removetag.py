@@ -9,13 +9,15 @@ def method(args):
     for filename in args.files:
         m.load(filename)
         group, name = name2groupname(args.name)
-        m.set(group, name, args.value)
+        tags = args.tag.split(",")
+        for t in tags:
+            t = t.strip()
+        m.remove_tag(group, name, tags)
         m.save()
     return 0
 
-parser_set = builtins.subparsers.add_parser(__name__.rsplit(".")[-1], help='sets a name/value metadata')
+parser_set = builtins.subparsers.add_parser(__name__.rsplit(".")[-1], help='removes a tag')
 parser_set.add_argument('name', type=str, help='name of the metadata')
-parser_set.add_argument('value', type=str, help='value of the metadata')
+parser_set.add_argument('tag', type=str, help='tag to add (comma seprated)')
 parser_set.add_argument('files', nargs='+', help='files to process')
 parser_set.set_defaults(func=method)
-
