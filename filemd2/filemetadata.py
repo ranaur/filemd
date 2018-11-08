@@ -11,12 +11,27 @@ from .metadata import TAG
 
 
 class FileMetadata:
-    def __init__(self, var = None):
+    def __init__(self, *args):
         self.__metadatas = MetadataList()
         self.__read_drivers = []
         self.__write_drivers = []
-        if var is not None:
+        self._init(args)
+
+    def _init(self, var):
+        if type(var) in [list, set, tuple]:
+            for v in var:
+                self._init(v)
+            return
+
+        if isinstance(var, Driver):
+            self.add_driver(var)
+            return
+
+        if isinstance(var, Identity) or type(var) is str:
             self.load(var)
+            return
+
+        raise TypeError
 
     def add_driver(self, driver, read_only = False, write_only = False):
         if not isinstance(driver, Driver):

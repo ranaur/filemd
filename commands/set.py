@@ -2,13 +2,16 @@ import argparse
 import builtins
 import filemd2
 
+from util import *
+
 def metadataSet(args):
-    m = filemd2.FileMetadata()
-    m.add_driver(DriverRemoraYAML())
+    m = filemd2.FileMetadata(filemd2.get_driver(args.driver))
     for filename in args.files:
+        m.load(filename)
         group, name = name2groupname(args.name)
         m.set(group, name, args.value)
-    m.save()
+        m.save()
+    return 0
 
 parser_set = builtins.subparsers.add_parser('set', help='sets a name/value metadata')
 parser_set.add_argument('name', type=str, help='name of the metadata')

@@ -1,3 +1,5 @@
+import inspect
+
 import os
 import datetime
 import filetype
@@ -30,10 +32,10 @@ class Identity:
     def _load_md5(self):
         if hasattr(self, "md5"):
             return
-        self.md5 = self.__hash()
+        return self.__hash()
 
     def _load_size(self):
-       self.size = self.__stat().st_size
+        return self.__stat().st_size
 
     def __guess(self):
         if hasattr(self, "__guess_"):
@@ -45,32 +47,26 @@ class Identity:
             return
 
         self.__guess()
-        if self.__guess_ is None:
-            self.mime = "application/octet-stream"
-        else:
-            self.mime =  kind.mime
+        return self.__guess_.mime if hasattr(self.__guess_, "mime") else "application/octet-stream"
         
     def _load_extension(self):
         if hasattr(self, "__extension"):
             return
 
         self.__guess()
-        if guess is None:
-            self.extension = "Unknown extension ." + os.split(self.file)[1]
-        else:
-            self.extension =  kind.extension
+        return self.__guess_.extension if hasattr(self.__guess_, "mime") else "Unknown extension ." + os.split(self.file)[1]
 
     def _load_fullpath(self):
-        self.fullpath = os.path.abspath(self.file)
+        return os.path.abspath(self.file)
 
     def _load_atime(self):
-        self.atime = datetime.datetime.fromtimestamp(self.__stat().st_atime)
+        return datetime.datetime.fromtimestamp(self.__stat().st_atime)
 
     def _load_ctime(self):
-        self.ctime = datetime.datetime.fromtimestamp(self.__stat().st_ctime)
+        return datetime.datetime.fromtimestamp(self.__stat().st_ctime)
 
     def _load_mtime(self):
-        self.mtime = datetime.datetime.fromtimestamp(self.__stat().st_mtime)
+        return datetime.datetime.fromtimestamp(self.__stat().st_mtime)
 
     def __hash(self):
         h = hashlib.new("md5")
@@ -85,4 +81,8 @@ class Identity:
             self._validate_file()
             self.__stat_ = os.stat(self.file)
         return self.__stat_;
+
+
+    def __str__(self):
+        return "Identity<file = %s md5 = %s>" % (self.file, self.md5)
 
