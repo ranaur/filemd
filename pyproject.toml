@@ -23,4 +23,4 @@ mutagen = ">=1.41"
 [tool.poetry.dev-dependencies]
 
 [tool.poetry.scripts]
-s4 = "md.py:entry_point"
+md = "md.py:entry_point"
